@@ -20,11 +20,29 @@ def is_valid_operator(str):
         return True
     else:
         return False
+    
+# Function that add two numbers
+def add(num1, num2):
+    return num1 + num2
+
+# Function that substract two numbers
+def substract(num1, num2):
+    return num1 - num2
+
+# Function that multiply two numbers
+def multiply(num1, num2):
+    return num1 * num2
+
+# Function that divide two numbers
+def divide(num1, num2):
+    return num1 / num2
 
 # Global variable declarations
 num1 = "n" # So the while loop can start
 num2 = "n" # So the while loop can start
 operator = ""
+result = 0
+continue_calculating = ""
 
 # Main program
 clear_console()
@@ -47,3 +65,26 @@ while not is_float(num2):
             print("You can't divide by zero! Try with another number.")
         else:
             num2 = float(str)
+
+# Calculate the result
+if operator == "+":
+    result = add(num1, num2)
+elif operator == "-":
+    result = substract(num1, num2)
+elif operator == "*":
+    result = multiply(num1, num2)
+elif operator == "/":
+    result = divide(num1, num2)
+
+# Print the result
+print(f"{num1} {operator} {num2} = {result}")
+
+# Ask the user if he wants to continue calculating or start a new one
+while continue_calculating != "y" and continue_calculating != "n":
+    continue_calculating = input(f"Type 'y' to continue calculating with {result}, or type 'n' to start a new calculation: ").lower()
+
+# If the user wants to continue calculating, num1 will be the result of the previous calculation
+if continue_calculating == "y":
+    num1 = result
+    
+
