@@ -38,53 +38,66 @@ def divide(num1, num2):
     return num1 / num2
 
 # Global variable declarations
-num1 = "n" # So the while loop can start
-num2 = "n" # So the while loop can start
-operator = ""
 result = 0
-continue_calculating = ""
+continue_calculating = "n"
 
-# Main program
-clear_console()
-print(art.logo)
-# Repeat first number petition until the user types a valid operand
-while not is_float(num1):
-    str = input("What's the first number?: ")
-    if is_float(str):
-        num1 = float(str)
+# Main program loop
+while continue_calculating == "n":
+    # Clear console and print the logo
+    clear_console()
+    print(art.logo)
 
-# Repeat operator petition until the user types a valid one
-while not is_valid_operator(operator):
-    operator = input("Pick an operation (+ - * /): ")
+    # Variable declarations
+    num1 = "n" # So the while loop can start
+    num2 = "n" # So the while loop can start
+    operator = "" # So the while loop can start
 
-# Repeat second number petition until the user types a valid operand
-while not is_float(num2):
-    str = input("What's the second number?: ")
-    if is_float(str):
-        if str == "0" and operator == "/":
-            print("You can't divide by zero! Try with another number.")
-        else:
-            num2 = float(str)
+    # Repeat first number petition until the user types a valid operand
+    while not is_float(num1):
+        str = input("What's the first number?: ")
+        if is_float(str):
+            num1 = float(str)
 
-# Calculate the result
-if operator == "+":
-    result = add(num1, num2)
-elif operator == "-":
-    result = substract(num1, num2)
-elif operator == "*":
-    result = multiply(num1, num2)
-elif operator == "/":
-    result = divide(num1, num2)
+    # Define the variable that will control the continue calculating while loop
+    continue_calculating = "y"
 
-# Print the result
-print(f"{num1} {operator} {num2} = {result}")
+    # Loop to continue calculating with the result of the previous calculation
+    while continue_calculating == "y":
+        # Repeat operator petition until the user types a valid one
+        while not is_valid_operator(operator):
+            operator = input("Pick an operation (+ - * /): ")
 
-# Ask the user if he wants to continue calculating or start a new one
-while continue_calculating != "y" and continue_calculating != "n":
-    continue_calculating = input(f"Type 'y' to continue calculating with {result}, or type 'n' to start a new calculation: ").lower()
+        # Repeat second number petition until the user types a valid operand
+        while not is_float(num2):
+            str = input("What's the second number?: ")
+            if is_float(str):
+                if str == "0" and operator == "/":
+                    print("You can't divide by zero! Try with another number.")
+                else:
+                    num2 = float(str)
 
-# If the user wants to continue calculating, num1 will be the result of the previous calculation
-if continue_calculating == "y":
-    num1 = result
-    
+        # Calculate the result
+        if operator == "+":
+            result = add(num1, num2)
+        elif operator == "-":
+            result = substract(num1, num2)
+        elif operator == "*":
+            result = multiply(num1, num2)
+        elif operator == "/":
+            result = divide(num1, num2)
 
+        # Print the result
+        print(f"{num1} {operator} {num2} = {result}")
+
+        # Reset the variables
+        continue_calculating = ""
+        operator = ""
+        num2 = "n"
+
+        # Ask the user if he wants to continue calculating or start a new one
+        while continue_calculating != "y" and continue_calculating != "n":
+            continue_calculating = input(f"Type 'y' to continue calculating with {result}, or type 'n' to start a new calculation: ").lower()
+
+        # If the user wants to continue calculating, num1 will be the result of the previous calculation
+        if continue_calculating == "y":
+            num1 = result
