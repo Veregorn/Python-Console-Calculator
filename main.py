@@ -40,6 +40,12 @@ def divide(num1, num2):
 # Global variable declarations
 result = 0
 continue_calculating = "n"
+operations = {
+    "+": add,
+    "-": substract,
+    "*": multiply,
+    "/": divide
+}
 
 # Main program loop
 while continue_calculating == "n":
@@ -77,14 +83,7 @@ while continue_calculating == "n":
                     num2 = float(str)
 
         # Calculate the result
-        if operator == "+":
-            result = add(num1, num2)
-        elif operator == "-":
-            result = substract(num1, num2)
-        elif operator == "*":
-            result = multiply(num1, num2)
-        elif operator == "/":
-            result = divide(num1, num2)
+        result = operations[operator](num1, num2) # Wow, this is cool!
 
         # Print the result
         print(f"{num1} {operator} {num2} = {result}")
