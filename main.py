@@ -93,9 +93,8 @@ while continue_calculating == "n":
         operator = ""
         num2 = "n"
 
-        # Ask the user if he wants to continue calculating or start a new one
-        while continue_calculating != "y" and continue_calculating != "n":
-            continue_calculating = input(f"Type 'y' to continue calculating with {result}, or type 'n' to start a new calculation: ").lower()
+        # Ask the user if he wants to continue calculating, start a new one or exit the program
+        continue_calculating = input(f"Type 'y' to continue calculating with {result}, type 'n' to start a new calculation or type something else to exit: ").lower()
 
         # If the user wants to continue calculating, num1 will be the result of the previous calculation
         if continue_calculating == "y":
